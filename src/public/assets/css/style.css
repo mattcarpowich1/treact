@@ -70,10 +70,18 @@ h1 {
 }
 
 .tempo span {
-	margin: 10px 0px;
+	margin: 5px 0px 10px 0px;
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 14px;
+	color: #2E282A;
+}
+
+.tempo span:nth-child(2) {
+	margin: 10px 0px 0px 0px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
 	color: #2E282A;
 }
 
@@ -151,13 +159,13 @@ select {
 	-moz-appearance: none;
   appearance: none;
   background: white;
-  background-image: url('../images/updown.jpg');
+  /*background-image: url('../images/updown.jpg');*/
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 0px;
   font-size: 18px;
-  padding: 15px 25px 15px 15px;
+  padding: 15px 20px 15px 20px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #3B3355;
@@ -166,7 +174,7 @@ select {
   outline: none;
 }
 
-select:-internal-list-box option:checked {
+select:-internal-list-box, option:checked {
   background-color: #2E282A !important;
   color: #FAD8D6 !important;
   font-size: 20px !important;

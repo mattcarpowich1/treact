@@ -31,7 +31,7 @@ class Controls extends Component {
 							type="button"
 							onClick={this.props.upTempo}
 							>+</button>
-						<span>{this.props.tempo}BPM</span>
+						<span>{this.props.tempo}</span><span>BPM</span>
 						<button
 							type="button"
 							onClick={this.props.downTempo}
