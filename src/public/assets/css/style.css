@@ -1,10 +1,61 @@
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+h1 {
+  margin-left: 4%;
+  margin-top: 1%;
+  margin-bottom: 10px;
+  font-size: 3em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: #232323;
+}
+
+.container {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 945px;
+}
+
 .controls {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
-	margin: 20px auto;
-	width: 50%;
+	margin: 40px auto;
+	width: 83%;
+	background: white;
+  padding: 25px;
+  border: 1px solid #ddd;
+  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
+  max-width: 330px;
+}
+
+.controls button {
+	padding: 25px 50px;
+	background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 9px 0px rgba(0,0,0,0.4);
+}
+
+.main {
+	display: flex;
+	margin: 0 auto;
+	width: 95%;
+	flex-direction: column;
+	max-height: 844px;
+}
+
+.notes-stepper {
+	display: flex;
+	width: 100%;
+	max-width: 900px;
+	flex-direction: row;
+	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
 }
 
 .steps {
@@ -14,36 +65,74 @@
 	align-items: center;
 	flex-wrap: wrap;
 	margin: 0 auto;
-	width: 50vw;
-	height: 50vw;
-	max-height: 550px;
-	max-width: 550px;
+	width: 70%;
+	max-height: 500px;
+	max-width: 500px;
 }
 
 .steps button {
 	width: 20%;
-	margin: 1.25%;
-	height: 20%;
+	margin: 2.25%;
+	height: 13.4vw;
 	border-radius: 50%;
 	border: none;
 	background-color: lightgray;
 	max-width: 100px;
 	max-height: 100px;
 	box-shadow: 0px 0px 15px 0px rgba(0,0,0,.5);
-	transition: all .35s ease-in;
+	font-family: 'Lato', sans-serif;
+	font-size: 18px;
+	transition: all .5s ease-out;
+	outline: none;
 }
 
 .playing {
-	box-shadow: 0px 0px 45px 0px rgba(0,0,0,.75) !important;
-	background-color: green !important;
-	transition: all .35s ease-out;
+	box-shadow: 0px 0px 80px 0px rgba(0,0,0,.75) !important;
+	background-color: #232323 !important;
+	transition: all .5s ease-in;
 }
 
 .notes {
-	margin-top: 20px;
+	width: 30%;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
 }
 
-.notes button {
+select {
+  -webkit-appearance: none;
+	-moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  background: white;
+  background-image: url('../images/updown.jpg');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: right;
+  border-radius: 0px;
+  font-size: 18px;
+  padding: 15px 25px 15px 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+option {
+	font-family: inherit;
+	color: #232323;
+	background-color: white;
+}
+
+
+@media only screen and (min-width: 942px) {
+    .notes-stepper {
+        margin-top: -68px;
+    }
+}
+
+
+/*.notes button {
 	padding: 10px;
 	margin: 5px;
 	font-size: 16px;
@@ -51,4 +140,4 @@
 	border: none;
 	color: white;
 	font-family: inherit;
-}
+}*/

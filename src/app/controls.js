@@ -18,13 +18,13 @@ class Controls extends Component {
 						type="button" 
 						className="play"
 						onClick={this.props.play}>
-						PLAY
+						<i class="fa fa-play" aria-hidden="true"></i>
 					</button>
 					<button 
 						type="button"
 						className="pause"
 						onClick={this.props.pause}>
-						PAUSE 
+						<i class="fa fa-pause" aria-hidden="true"></i>
 					</button>
 				</div>
 			)

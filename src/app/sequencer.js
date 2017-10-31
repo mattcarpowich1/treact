@@ -65,9 +65,9 @@ class Sequencer extends Component {
 		this.refs.stepper.off()
 	}
 
-	selectNote(note) {
+	selectNote(e) {
 		this.setState({
-			selectedNote: note
+			selectedNote: e.target.value
 		})
 	}
 
@@ -95,21 +95,23 @@ class Sequencer extends Component {
 		Tone.Transport.start()
 
 		return (
-			<div className="container-fluid">
+			<div className="main">
+				<div className="notes-stepper">
+					<Notes 
+							selector={this.selectNote}
+					/>
+					<Stepper 
+						ref="stepper"
+						selected={this.state.selectedNote}
+						sequence={this.state.sequence}
+						playing={this.state.playing}
+						paused={this.state.paused} 
+						step={this.state.currentStep}
+						alterStep={this.alterStep}/>
+				</div>
 				<Controls 
 					play={this.playWasPressed}
 					pause={this.pauseWasPressed} />
-				<Stepper 
-					ref="stepper"
-					selected={this.state.selectedNote}
-					sequence={this.state.sequence}
-					playing={this.state.playing}
-					paused={this.state.paused} 
-					step={this.state.currentStep}
-					alterStep={this.alterStep}/>
-				<Notes 
-					selector={this.selectNote}
-				/>
 			</div>
 		)
 

@@ -13,24 +13,37 @@ class Notes extends Component {
 		for (let i = 2; i < 7; i++) {
 			let x = 0;
       for (let j = 0; j < notes.length; j++) {
-        allnotes.push(
-        	<button 
-        		type="button"
-  					key={x}
-  					className="note-btn"
-  					onClick={ () => {
-  						this.props.selector(notes[j] + i)
-  					}}>
-  					{notes[j] + i}
-					</button>
-      	);
+      	if (notes[j] + i === "C4") {
+      		allnotes.push(
+	        	<option 
+	        		// type="button"
+	  					key={x}
+	  					className="note-btn"
+	  					selected
+	  					value={notes[j] + i}>
+	  					{notes[j] + i}
+						</option>
+      		);
+      	} else {
+      		allnotes.push(
+	        	<option 
+	        		// type="button"
+	  					key={x}
+	  					className="note-btn"
+	  					value={notes[j] + i}>
+	  					{notes[j] + i}
+						</option>
+	      	);
+      	}   
       	x++
       }
     }
 
 		return (
-			<div className="container notes">
-				{allnotes}
+			<div className="notes">
+				<select onChange={this.props.selector}>
+					{allnotes}
+				</select>
 			</div>
 		)
 	}
