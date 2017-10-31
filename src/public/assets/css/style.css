@@ -1,0 +1,54 @@
+.controls {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px auto;
+	width: 50%;
+}
+
+.steps {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	width: 50vw;
+	height: 50vw;
+	max-height: 550px;
+	max-width: 550px;
+}
+
+.steps button {
+	width: 20%;
+	margin: 1.25%;
+	height: 20%;
+	border-radius: 50%;
+	border: none;
+	background-color: lightgray;
+	max-width: 100px;
+	max-height: 100px;
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,.5);
+	transition: all .35s ease-in;
+}
+
+.playing {
+	box-shadow: 0px 0px 45px 0px rgba(0,0,0,.75) !important;
+	background-color: green !important;
+	transition: all .35s ease-out;
+}
+
+.notes {
+	margin-top: 20px;
+}
+
+.notes button {
+	padding: 10px;
+	margin: 5px;
+	font-size: 16px;
+	background: blue;
+	border: none;
+	color: white;
+	font-family: inherit;
+}
