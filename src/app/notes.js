@@ -55,6 +55,11 @@ class Notes extends Component {
 					onChange={this.props.selector}>
 					{allnotes}
 				</select>
+				<button
+					type="button"
+					onClick={this.props.toggleBeat}>
+					DRUMS
+				</button>
 			</div>
 		)
 	}

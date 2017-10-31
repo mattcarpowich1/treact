@@ -148,8 +148,8 @@ h1 {
 	max-height: 100px;
   box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
 	font-family: 'Lato', sans-serif;
-	font-size: 16px;
-	transition: all .3s ease;
+	font-size: 12px;
+	transition: all .3s ease-out;
 	outline: none;
 	color: white;
 }
@@ -157,19 +157,31 @@ h1 {
 .playing {
 	box-shadow: 0px 0px 30px 0px rgba(0,0,0,.5) !important;
 	background-color: #17BEBB !important;
-	transition: all 0.15s ease-out !important;
+	transition: all 0.3s ease-out !important;
 }
 
 .notes {
 	width: 30%;
 	margin: 0;
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	height: 173px;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 217px;
 	overflow-x: hidden;
 	overflow-y: scroll;
+}
+
+.notes select {
+	margin-bottom: 10px;
+}
+
+.notes button {
+	background: white;
+	font-family: 'Lato', sans-serif;
+	padding: 5px 10px;
+	box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.4);
+	border: none;
 }
 
 select {
@@ -183,7 +195,7 @@ select {
   background-position: right;
   border-radius: 0px;
   font-size: 18px;
-  padding: 15px 5px 15px 20px;
+  padding: 15px 5px 15px 5px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
   color: #3B3355;

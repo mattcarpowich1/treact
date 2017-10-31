@@ -21,6 +21,13 @@ class Sequencer extends Component {
 				"F3","A3","C4","E4"
 			],
 
+			drumSequence: [
+				"C2", "E2", "C#2", "E2",
+				"C2", "E2", "C#2", "E2",
+				"C2", "E2", "C#2", "E2",
+				"C2", "E2", "C#2", "E2",
+			],
+
 			// sequence is playing
 			playing: false,
 
@@ -39,11 +46,17 @@ class Sequencer extends Component {
 			// store the loop object
 			loop: null,
 
+			// store drum loop object
+			drumLoop: null,
+
 			// current note selected
 			selectedNote: "",
 
 			// beat division of the loop
-			beatDivision: "8n"
+			beatDivision: "8n",
+
+			// toggle drums 
+			drums: false
 		}
 
 		this.playWasPressed = this.playWasPressed.bind(this)
@@ -53,6 +66,7 @@ class Sequencer extends Component {
 		this.upTempo = this.upTempo.bind(this)
 		this.downTempo = this.downTempo.bind(this)
 		this.beatChange = this.beatChange.bind(this)
+		this.addDrums = this.addDrums.bind(this)
 
 	}
 
@@ -64,6 +78,9 @@ class Sequencer extends Component {
 
 	// pause button handler
 	pauseWasPressed() {
+		if (this.state.drums) {
+			this.state.drumLoop.stop()
+		}
 		this.state.loop.stop()
 		this.setState({
 			currentStep: -1
@@ -110,17 +127,72 @@ class Sequencer extends Component {
 												this.state.sequence, 
 												this.state.numSteps,
 												e.target.value,
-												this)
+												this, 
+												this.state.drums)
 		this.setState({
 			loop: loop
 		})
 		loop.start()
 	} 
 
+	addDrums() {
+		if (this.state.drums) {
+			this.state.drumLoop.stop()
+			this.setState({
+				drums: false
+			})
+		} else {
+
+			this.state.loop.stop()
+
+			this.setState({
+				drums: true
+			})
+
+			let sampler = new Tone.Sampler({
+				"C2" : "./assets/sounds/kick1.mp3",
+				"C#2" : "./assets/sounds/snare1.mp3",
+				"D2" : "./assets/sounds/block1.mp3",
+				"D#2" : "./assets/sounds/clap1.mp3",
+				"E2" : "./assets/sounds/hat1.mp3"
+			}, () => {
+				console.log("sampler")
+			})
+
+			sampler = sampler.toMaster()
+
+			sampler.volume.value = 3
+			sampler.attack = 0.03
+
+			let loop = makeLoop(this.state.sound, 
+													this.state.sequence, 
+													this.state.numSteps,
+													this.state.beatDivision,
+													this)
+
+			let drumLoop = makeDrumLoop(sampler,
+																	this.state.drumSequence,
+																	this.state.numSteps,
+																	this.state.beatDivision,
+																	this)
+
+			this.setState({
+				loop: loop,
+				drumLoop: drumLoop
+			})
+			// Tone.Transport.start()
+			drumLoop.start()
+			loop.start()
+
+		}
+		
+	}
+
 	componentWillMount() {
 		Tone.Transport.bpm.value = this.state.tempo
 		Tone.Transport.start()
 		let sound = makeSynth(8).toMaster()
+		sound.volume.value = -1
 		let loop = makeLoop(sound, 
 												this.state.sequence, 
 												this.state.numSteps,
@@ -132,8 +204,6 @@ class Sequencer extends Component {
 		})
 	}
 
-
-
 	render() {
 
 		return (
@@ -141,6 +211,7 @@ class Sequencer extends Component {
 				<div className="notes-stepper">
 					<Notes 
 							selector={this.selectNote}
+							toggleBeat={this.addDrums}
 					/>
 					<Stepper 
 						ref="stepper"
@@ -160,12 +231,12 @@ class Sequencer extends Component {
 					tempo={this.state.tempo}/>
 			</div>
 		)
-
 	}
 
 }
 
-function makeLoop(sound, sequence, numSteps, div, _this) {
+function makeLoop(sound, sequence, numSteps, div, 
+									_this) {
 	return new Tone.Loop(time => {
 
     if (currentStep >= numSteps) {
@@ -181,8 +252,24 @@ function makeLoop(sound, sequence, numSteps, div, _this) {
     _this.setState({
     	currentStep: currentStep
     })
-    console.log(div);
     currentStep++
+  }, div)
+
+}
+
+function makeDrumLoop(sampler, sequence, numSteps, div, _this) {
+	return new Tone.Loop(time => {
+
+    if (currentStep >= numSteps) {
+      currentStep = 0
+    } 
+
+    let current = currentStep
+    let previous = ((currentStep - 1) + numSteps) % numSteps
+
+    if (sequence[currentStep]) {
+      sampler.triggerAttack(sequence[currentStep], time)
+    }
   }, div)
 
 }
