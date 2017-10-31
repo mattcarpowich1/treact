@@ -141,6 +141,9 @@ h1 {
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
+	height: 173px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 select {
@@ -161,6 +164,13 @@ select {
   box-shadow: 2px 2px 8px -1px rgba(0,0,0,0.2);
   border: none;
   outline: none;
+}
+
+select:-internal-list-box option:checked {
+  background-color: #2E282A !important;
+  color: #FAD8D6 !important;
+  font-size: 20px !important;
+  transition: all .2s ease;
 }
 
 option {

@@ -41,7 +41,9 @@ class Notes extends Component {
 
 		return (
 			<div className="notes">
-				<select onChange={this.props.selector}>
+				<select 
+					size="6" 
+					onChange={this.props.selector}>
 					{allnotes}
 				</select>
 			</div>
