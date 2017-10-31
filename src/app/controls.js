@@ -26,6 +26,17 @@ class Controls extends Component {
 						onClick={this.props.pause}>
 						<i class="fa fa-pause" aria-hidden="true"></i>
 					</button>
+					<div className="tempo">
+						<button 
+							type="button"
+							onClick={this.props.upTempo}
+							>+</button>
+						<span>{this.props.tempo}BPM</span>
+						<button
+							type="button"
+							onClick={this.props.downTempo}
+							>-</button>
+					</div>
 				</div>
 			)
 		

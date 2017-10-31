@@ -47,6 +47,8 @@ class Sequencer extends Component {
 		this.pauseWasPressed = this.pauseWasPressed.bind(this) 
 		this.selectNote = this.selectNote.bind(this)
 		this.alterStep = this.alterStep.bind(this)
+		this.upTempo = this.upTempo.bind(this)
+		this.downTempo = this.downTempo.bind(this)
 
 	}
 
@@ -79,7 +81,25 @@ class Sequencer extends Component {
 		})
 	}
 
+	upTempo() {
+		let newTempo = this.state.tempo + 1
+		this.setState({
+			tempo: newTempo
+		})
+		Tone.Transport.bpm.value = this.state.tempo
+	}
+
+	downTempo() {
+		let newTempo = this.state.tempo - 1
+		this.setState({
+			tempo: newTempo
+		})
+		Tone.Transport.bpm.value = this.state.tempo
+	}
+
 	componentWillMount() {
+		Tone.Transport.bpm.value = this.state.tempo
+		Tone.Transport.start()
 		let sound = makeSynth(8).toMaster()
 		let loop = makeLoop(sound, this.state.sequence, this.state.numSteps, this)
 		this.setState({
@@ -89,10 +109,6 @@ class Sequencer extends Component {
 	}
 
 	render() {
-
-		// master tempo
-		Tone.Transport.bpm.value = this.state.tempo
-		Tone.Transport.start()
 
 		return (
 			<div className="main">
@@ -111,7 +127,10 @@ class Sequencer extends Component {
 				</div>
 				<Controls 
 					play={this.playWasPressed}
-					pause={this.pauseWasPressed} />
+					pause={this.pauseWasPressed} 
+					upTempo={this.upTempo}
+					downTempo={this.downTempo}
+					tempo={this.state.tempo}/>
 			</div>
 		)
 

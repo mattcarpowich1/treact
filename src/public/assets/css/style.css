@@ -1,6 +1,7 @@
 html, body {
 	padding: 0;
 	margin: 0;
+	background-color: white;
 }
 
 h1 {
@@ -10,7 +11,7 @@ h1 {
   font-size: 3em;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  color: #232323;
+  color: #2E282A;
 }
 
 .container {
@@ -26,18 +27,58 @@ h1 {
 	align-items: center;
 	margin: 40px auto;
 	width: 83%;
-	background: white;
+	background: #FEFCFD;
   padding: 25px;
-  border: 1px solid #ddd;
-  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.5);
-  max-width: 330px;
+  border: none;
+  box-shadow: 2px 2px 14px -3px rgba(0,0,0,0.5);
 }
 
 .controls button {
-	padding: 25px 50px;
+	padding: 5% 10%;
 	background-color: white;
-  border: 1px solid #ccc;
   box-shadow: 2px 2px 9px 0px rgba(0,0,0,0.4);
+  outline: none;
+}
+
+.controls > button:nth-child(1) {
+	border: 1px solid #17BEBB;
+}
+
+.controls > button:nth-child(2) {
+	border: 1px solid #CD5334;
+}
+
+.tempo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.tempo button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 5px 29px;
+	box-shadow: 1px 1px 11px 0px rgba(0,0,0,0.6);
+	border-radius: 2px;
+	border: none;
+	background-color: white;
+	color: #2E282A;
+	font-size: 14px;
+}
+
+.tempo span {
+	margin: 10px 0px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	color: #2E282A;
+}
+
+.fa {
+	font-size: 14px !important;
 }
 
 .main {
@@ -76,20 +117,21 @@ h1 {
 	height: 13.4vw;
 	border-radius: 50%;
 	border: none;
-	background-color: lightgray;
+	background-color: #EDB88B;
 	max-width: 100px;
 	max-height: 100px;
-	box-shadow: 0px 0px 15px 0px rgba(0,0,0,.5);
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.3);
 	font-family: 'Lato', sans-serif;
 	font-size: 18px;
-	transition: all .5s ease-out;
+	transition: all .7s ease-out;
 	outline: none;
+	color: white;
 }
 
 .playing {
 	box-shadow: 0px 0px 80px 0px rgba(0,0,0,.75) !important;
-	background-color: #232323 !important;
-	transition: all .5s ease-in;
+	background-color: #17BEBB !important;
+	transition: all .3s ease-in;
 }
 
 .notes {
@@ -105,7 +147,6 @@ select {
   -webkit-appearance: none;
 	-moz-appearance: none;
   appearance: none;
-  border: 1px solid #ccc;
   background: white;
   background-image: url('../images/updown.jpg');
   background-size: 40%;
@@ -116,11 +157,15 @@ select {
   padding: 15px 25px 15px 15px;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+  color: #3B3355;
+  box-shadow: 2px 2px 8px -1px rgba(0,0,0,0.2);
+  border: none;
+  outline: none;
 }
 
 option {
 	font-family: inherit;
-	color: #232323;
+	color: #000505;
 	background-color: white;
 }
 
