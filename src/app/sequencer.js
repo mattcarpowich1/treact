@@ -50,7 +50,7 @@ class Sequencer extends Component {
 			drumLoop: null,
 
 			// current note selected
-			selectedNote: "",
+			selectedNote: "C4",
 
 			// beat division of the loop
 			beatDivision: "8n",
