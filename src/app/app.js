@@ -19,7 +19,6 @@ class App extends Component {
 
 }
 
-StartAudioContext(Tone.context, '.play').then(() => {
-	render(<App />, 
+render(<App />, 
 	document.getElementById('app'))
-})
+
