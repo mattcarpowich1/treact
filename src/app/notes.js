@@ -10,6 +10,15 @@ class Notes extends Component {
 
 		let allnotes = []
 
+		allnotes.push(
+			<option 
+    		// type="button"
+				className="note-btn"
+				value="">
+				EMPTY
+			</option>
+		)
+
 		for (let i = 2; i < 7; i++) {
 			let x = 0;
       for (let j = 0; j < notes.length; j++) {

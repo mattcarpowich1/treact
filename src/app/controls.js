@@ -26,6 +26,24 @@ class Controls extends Component {
 						onClick={this.props.pause}>
 						<i class="fa fa-pause" aria-hidden="true"></i>
 					</button>
+					<div className="beat-division">
+						<span>Beat Division</span>
+						<select onChange={this.props.beatChange}>
+							<option
+								value="16n">
+								1/16
+							</option>
+							<option
+								selected
+								value="8n">
+								1/8
+							</option>
+							<option
+								value="4n">
+								1/4
+							</option>
+						</select>
+					</div>
 					<div className="tempo">
 						<button 
 							type="button"

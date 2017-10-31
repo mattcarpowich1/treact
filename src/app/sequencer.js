@@ -40,7 +40,10 @@ class Sequencer extends Component {
 			loop: null,
 
 			// current note selected
-			selectedNote: ""
+			selectedNote: "",
+
+			// beat division of the loop
+			beatDivision: "8n"
 		}
 
 		this.playWasPressed = this.playWasPressed.bind(this)
@@ -49,6 +52,7 @@ class Sequencer extends Component {
 		this.alterStep = this.alterStep.bind(this)
 		this.upTempo = this.upTempo.bind(this)
 		this.downTempo = this.downTempo.bind(this)
+		this.beatChange = this.beatChange.bind(this)
 
 	}
 
@@ -97,16 +101,38 @@ class Sequencer extends Component {
 		Tone.Transport.bpm.value = this.state.tempo
 	}
 
+	beatChange(e){
+		this.state.loop.stop()
+		this.setState({
+			beatDivision: e.target.value
+		})
+		let loop = makeLoop(this.state.sound, 
+												this.state.sequence, 
+												this.state.numSteps,
+												e.target.value,
+												this)
+		this.setState({
+			loop: loop
+		})
+		loop.start()
+	} 
+
 	componentWillMount() {
 		Tone.Transport.bpm.value = this.state.tempo
 		Tone.Transport.start()
 		let sound = makeSynth(8).toMaster()
-		let loop = makeLoop(sound, this.state.sequence, this.state.numSteps, this)
+		let loop = makeLoop(sound, 
+												this.state.sequence, 
+												this.state.numSteps,
+												this.state.beatDivision,
+												this)
 		this.setState({
 			sound: sound, 
-			loop: loop
+			loop: loop,
 		})
 	}
+
+
 
 	render() {
 
@@ -128,6 +154,7 @@ class Sequencer extends Component {
 				<Controls 
 					play={this.playWasPressed}
 					pause={this.pauseWasPressed} 
+					beatChange={this.beatChange}
 					upTempo={this.upTempo}
 					downTempo={this.downTempo}
 					tempo={this.state.tempo}/>
@@ -138,7 +165,7 @@ class Sequencer extends Component {
 
 }
 
-function makeLoop(sound, sequence, numSteps, _this) {
+function makeLoop(sound, sequence, numSteps, div, _this) {
 	return new Tone.Loop(time => {
 
     if (currentStep >= numSteps) {
@@ -150,12 +177,13 @@ function makeLoop(sound, sequence, numSteps, _this) {
 
     if (sequence[currentStep]) {
       sound.triggerAttackRelease(sequence[currentStep], "8n", time)
-      _this.setState({
-      	currentStep: currentStep
-      })
     }
+    _this.setState({
+    	currentStep: currentStep
+    })
+    console.log(div);
     currentStep++
-  }, "8n")
+  }, div)
 
 }
 
